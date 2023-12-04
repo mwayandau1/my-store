@@ -15,7 +15,6 @@ function NavLinks() {
     <>
         {links.map((link)=>{
             const {id, url, text} = link
-            console.log(text)
             return (
                 <li key={id} className="capitalize">
                     <NavLink to={url}>{text}</NavLink>
