@@ -1,6 +1,9 @@
 import { customFetch, formatPrice, generateQuantityOptions } from "../utils"
 import { Link, useLoaderData } from "react-router-dom"
 import { useState } from "react"
+import { useDispatch } from "react-redux"
+import { addItem } from "../features/cart/cartSlice"
+
 
 
 export const loader = async({params}) =>{
@@ -20,6 +23,15 @@ function SingleProduct() {
     setQuantity(parseInt(e.target.value))
   }
 
+  const cartProduct = {
+    cartID:product.id + productColor,
+    productID: product.id,
+    image, price, title, company, productColor, quantity
+  }
+  const dispatch = useDispatch()
+  const handleAddToCart =()=>{
+    dispatch(addItem({product:cartProduct}))
+  }
   const dollarAmount = formatPrice(price)
   return (
     <section>
@@ -58,7 +70,7 @@ function SingleProduct() {
 
                 </div>
                 <div className="mt-10">
-                  <button className="btn btn-secondary btn-md">Add to bag</button>
+                  <button className="btn btn-secondary btn-md" onClick={handleAddToCart}>Add to bag</button>
                 </div>
             </div>
           </div>

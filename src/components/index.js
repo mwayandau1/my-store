@@ -13,11 +13,18 @@ import {default as ProductContainer} from './ProductContainer'
 import {default as PaginationContainer} from './PaginationContainer'
 import {default as ProductList} from './ProductList'
 import {default as FormSelect} from './/FormSelect'
+import {default as FormRange} from './FormRange'
+import {default as FormCheckbox} from './FormCheckbox'
+import {default as Loading } from './Loading'
+import {default as CartTotals} from './CartTotals'
+import {default as CartItemList } from './CartItemList'
+import {default as CheckoutForm} from './CheckoutForm'
 
 
 
 export {
     FormInput, SubmitButton, Header, Navbar, NavLinks, Hero, ErrorElement,
-        SectionTitle, ProductGrid, FeaturedProducts,Filters, ProductContainer,
-         PaginationContainer, ProductList, FormSelect
+    SectionTitle, ProductGrid, FeaturedProducts,Filters, ProductContainer,
+    PaginationContainer, ProductList, FormSelect, FormRange, FormCheckbox,
+    Loading, CartTotals, CartItemList, CheckoutForm
     }

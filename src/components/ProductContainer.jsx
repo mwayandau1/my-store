@@ -28,7 +28,7 @@ function ProductContainer() {
         </div>
         {/* PRODUCTS */}
         <div>
-            {totalProducts && <h5 className="text-lg mt-16">Sorry, no product matches your search</h5>}
+            {totalProducts < 1 && <h5 className="text-lg mt-16">Sorry, no product matches your search</h5>}
            {layout === 'grid' && <ProductGrid />}
            {layout === 'list' && <ProductList />}
         </div>
