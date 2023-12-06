@@ -1,4 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import {ReactQueryDevtools} from '@tanstack/react-query-devtools'
 import {About, HomeLayout, Login, Landing, Checkout,
    Orders, Cart, Products, SingleProduct, Error, Register} from './pages'
 import { ErrorElement } from './components'
@@ -7,12 +9,22 @@ import {loader as landingLoader} from './pages/Landing'
 import {loader as singleProductLoader} from './pages/SingleProduct'
 import {loader as productsLoader} from './pages/Products'
 import {loader as checkoutLoader} from './pages/Checkout'
+import {loader as ordersLoader} from './pages/Orders'
 
 
 // ACTIONS
 import {action as registerAction } from './pages/Register';
 import {action as loginAction} from './pages/Login'
+import {action as checkoutAction } from './components/CheckoutForm'
 
+
+const queryClient = new QueryClient({
+  defaultOptions:{
+    queries:{
+      staleTime: 1000 * 60 *5
+    },
+  },
+});
 import { store } from './store'
    const router = createBrowserRouter([
     {
@@ -24,19 +36,19 @@ import { store } from './store'
           index:true,
           element:<Landing />,
           errorElement:<ErrorElement />,
-          loader:landingLoader
+          loader:landingLoader(queryClient)
         },
         {
           path:'products',
           element:<Products />,
           errorElement:<ErrorElement />,
-          loader:productsLoader
+          loader:productsLoader(queryClient)
         },
         {
           path:'product/:id',
           element:<SingleProduct />,
           errorElement:<ErrorElement />,
-          loader:singleProductLoader
+          loader:singleProductLoader(queryClient)
         },
         {
           path:'cart',
@@ -46,13 +58,15 @@ import { store } from './store'
         {
           path:'orders',
           element:<Orders />,
-          errorElement:<ErrorElement />
+          errorElement:<ErrorElement />,
+          loader:ordersLoader(store, queryClient)
         },
         {
           path:'checkout',
           element:<Checkout />,
           errorElement:<ErrorElement />,
-          loader:checkoutLoader(store)
+          loader:checkoutLoader(store),
+          action:checkoutAction(store, queryClient)
         },
         {
           path:'about',
@@ -79,7 +93,10 @@ import { store } from './store'
 function App() {
 
   return (
-    <RouterProvider router={router} />
+    <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false}/>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
   )
 }
 

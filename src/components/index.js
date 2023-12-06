@@ -19,6 +19,8 @@ import {default as Loading } from './Loading'
 import {default as CartTotals} from './CartTotals'
 import {default as CartItemList } from './CartItemList'
 import {default as CheckoutForm} from './CheckoutForm'
+import {default as OrdersList} from './OrdersList'
+import {default as ComplexPaginationContainer} from './ComplexPaginationContainer'
 
 
 
@@ -26,5 +28,5 @@ export {
     FormInput, SubmitButton, Header, Navbar, NavLinks, Hero, ErrorElement,
     SectionTitle, ProductGrid, FeaturedProducts,Filters, ProductContainer,
     PaginationContainer, ProductList, FormSelect, FormRange, FormCheckbox,
-    Loading, CartTotals, CartItemList, CheckoutForm
+    Loading, CartTotals, CartItemList, CheckoutForm, OrdersList, ComplexPaginationContainer
     }
